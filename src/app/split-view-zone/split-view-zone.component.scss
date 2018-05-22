@@ -1,0 +1,18 @@
+@import '../ui-variables';
+
+:host {
+  height: 100%;
+  flex-grow: 1;
+}
+
+ /deep/ .block  {
+  height: 100%;
+}
+
+.split-view-zone {
+  height: 100%;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  padding: 20px;
+  box-sizing: border-box;
+}

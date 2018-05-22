@@ -1,0 +1,6 @@
+<div class="row-wrapper">
+  <app-block-place *ngFor="let blockPlace of row" [blockPlace]="blockPlace"
+                   [sectionSequence]="sectionSequence"
+                   [sequence]="rowSequence"
+                   [style.width]="blockPlace.width + '%'" [style.flex-grow]="'1'"></app-block-place>
+</div>

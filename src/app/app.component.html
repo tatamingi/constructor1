@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <div class="wrapper__drop-zone" [ngClass]="{'wrapper__drop-zone_reversed': dropZoneReversed}">
+    <app-drop-zone (addSplitView)="addSplitView($event)"
+                   [showAddSplitViewButton]="!splitViewEnable"
+                   [ngClass]="{'wrapper__drop-zone__first-block': !dropZoneReversed && splitViewEnable}"
+                   [style.width]="dropZoneWidth + '%'"></app-drop-zone>
+    <app-split-view-zone [style.display]="displaySplitView"
+                         [style.width]="splitViewWidth + '%'"
+                         [ngClass]="{'wrapper__drop-zone__first-block': dropZoneReversed && splitViewEnable}">
+    </app-split-view-zone>
+  </div>
+  <app-drag-zone [items]="items"></app-drag-zone>
+</div>
+
+<app-overlay [items]="items"></app-overlay>

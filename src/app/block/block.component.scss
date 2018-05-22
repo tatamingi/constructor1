@@ -1,0 +1,19 @@
+@import '../ui-variables';
+
+.block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: $block-shadow;
+  border-radius: $border-radius;
+  background: $block-background-color;
+}
+
+.block:hover {
+  box-shadow: $box-shadow-hover;
+}
+
+.block__label {
+  font-size: $font-size;
+  color: rgba(0,0,0,0.6);
+}

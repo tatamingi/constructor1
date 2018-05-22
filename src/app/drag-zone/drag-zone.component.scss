@@ -1,0 +1,31 @@
+@import '../ui-variables';
+
+:host {
+  width: 20%;
+  height: 100%;
+}
+
+.drag-zone {
+  height: 100%;
+  overflow: auto;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  padding: 20px 20px 0 20px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #F5F5F5;
+  border-radius: $border-radius;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+:host /deep/ .block {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,18 @@
+<div class="drop-zone">
+  <app-add-button [style.width]="addSplitViewButtonWidth + '%'"
+                  [style.margin-right]="'20px'"
+                  (click)="addSplitViewClick('left')"
+                  *ngIf="showAddSplitViewButton"></app-add-button>
+  <div class="drop-zone__sections">
+    <app-section *ngFor="let section of sections; let sequence = index;"
+                 [sequence]="sequence"></app-section>
+    <app-add-button [style.width]="'100%'"
+                    [style.height]="'40%'"
+                    [label]="addSectionButtonLabel"
+                    (click)="addSectionClick()"></app-add-button>
+  </div>
+  <app-add-button [style.width]="addSplitViewButtonWidth + '%'"
+                  [style.margin-left]="'20px'"
+                  (click)="addSplitViewClick('right')"
+                  *ngIf="showAddSplitViewButton"></app-add-button>
+</div>

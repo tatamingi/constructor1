@@ -1,0 +1,36 @@
+@import '../ui-variables';
+
+.wrapper {
+  width: 150px;
+  height: 220px;
+  font-size: 17px;
+  overflow: auto;
+  box-shadow: $box-shadow;
+  position: absolute;
+  background: white;
+}
+
+.wrapper__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper__item {
+  padding: 10px 20px;
+}
+
+.wrapper__item:hover {
+  background-color: $hover-color;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #F5F5F5;
+  border-radius: $border-radius;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.1);
+  border-radius: 10px;
+}

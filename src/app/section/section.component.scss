@@ -1,0 +1,8 @@
+@import '../ui-variables';
+
+.section-wrapper {
+  box-shadow: inset $box-shadow;
+  border-radius: $border-radius;
+  padding: 20px;
+  margin-bottom: 20px;
+}

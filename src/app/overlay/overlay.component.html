@@ -1,0 +1,5 @@
+<div class="wrapper" [style.top]="top + 'px'" [style.left]="left + 'px'" *ngIf="show">
+  <ul class="wrapper__list">
+    <li class="wrapper__item" *ngFor="let item of items" (click)="selectItem(item)">{{item}}</li>
+  </ul>
+</div>

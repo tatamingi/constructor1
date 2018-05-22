@@ -1,0 +1,9 @@
+<div class="section-wrapper">
+  <app-section-row *ngFor="let row of rows; let rowSequence = index" [blocks]="row"
+                   [maxColumnCount]="maxColumnCount"
+                   [sectionSequence]="sequence"
+                   [rowSequence]="rowSequence"></app-section-row>
+  <app-section-row [maxColumnCount]="maxColumnCount"
+                   [sectionSequence]="sequence"
+                   [rowSequence]="rows.length"></app-section-row>
+</div>

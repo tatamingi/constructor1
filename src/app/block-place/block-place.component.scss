@@ -1,0 +1,7 @@
+:host {
+  height: 100px;
+}
+
+:host:not(:last-child) {
+  margin-right: 20px;
+}
