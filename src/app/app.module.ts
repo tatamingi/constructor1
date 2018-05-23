@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DragZoneComponent } from './drag-zone/drag-zone.component';
@@ -14,6 +15,7 @@ import { OverlayComponent } from './overlay/overlay.component';
 
 import { TransitionService } from './transition.service';
 import { ConfigService } from './config.service';
+import { DragManagerService } from './drag-manager.service';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,10 @@ import { ConfigService } from './config.service';
     OverlayComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
-  providers: [TransitionService, ConfigService],
+  providers: [TransitionService, ConfigService, DragManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

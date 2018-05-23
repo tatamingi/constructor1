@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-block',
@@ -8,8 +8,26 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class BlockComponent implements OnInit {
   @Input() public blockName: string;
   @Input() public blockHeight = '100px';
+  @Input() public blockWidth: number;
+  @Input() public draggableFromMenu: boolean;
+  @Input() public draggable: boolean;
+
+  @Output() public updateBlock = new EventEmitter();
+
+  @ViewChild('input') private input: ElementRef;
+
+  public inputEnable: boolean;
 
   constructor() { }
+
+  public updateWidth = (width: number) => {
+    this.inputEnable = false;
+    this.updateBlock.emit(width);
+  }
+
+  public toggleInput = (): void => {
+    this.inputEnable = true;
+  }
 
   ngOnInit() {
   }

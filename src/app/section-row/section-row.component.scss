@@ -4,4 +4,15 @@
   margin-bottom: 20px;
 }
 
+.row-wrapper__blocks {
+  display: flex;
+  margin-right: 20px;
+  width: calc(100% - 120px);
+}
+
+:host /deep/ button {
+  width: 100px;
+  height: 100px;
+}
+
 

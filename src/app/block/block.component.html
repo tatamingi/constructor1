@@ -1,3 +1,6 @@
-<div class="block" [style.height]="blockHeight">
+<div class="block" [style.height]="blockHeight"
+     [ngClass]="{'draggable': draggable, 'draggable-from-menu': draggableFromMenu}">
   <p class="block__label">{{blockName}}</p>
+  <p class="block__width" *ngIf="blockWidth && !inputEnable" (click)="toggleInput()">ширина: {{blockWidth}}%</p>
+  <input type="text" *ngIf="inputEnable" [(ngModel)]="blockWidth" (blur)="updateWidth(blockWidth)" autofocus>
 </div>

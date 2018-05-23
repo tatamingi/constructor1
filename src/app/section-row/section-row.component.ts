@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BlockPlace } from '../classes';
 import * as _ from 'lodash';
+import {ConfigService} from '../config.service';
+import {TransitionService} from '../transition.service';
 
 @Component({
   selector: 'app-section-row',
@@ -8,29 +10,23 @@ import * as _ from 'lodash';
   styleUrls: ['./section-row.component.scss']
 })
 export class SectionRowComponent implements OnInit {
-  public row;
-
   @Input() public rowSequence: number;
   @Input() public sectionSequence: number;
   @Input() public maxColumnCount: number;
+  @Input() public blocks: BlockPlace[] = [];
 
-  @Input() public set blocks(data: BlockPlace[]) {
-    if (!_.isEmpty(data)) {
-      this.row = _.range(this.getBlocksMaxPosition(data) + 2);
-      data.forEach((block: BlockPlace) => this.row[block.position] = block );
-    }
+  public defaultBlockWidth = 40;
+
+  constructor(
+    private _transitionService: TransitionService,
+    private _configService: ConfigService) {
   }
 
-  private getBlocksMaxPosition = (blocks: BlockPlace[]): number =>
-    _.max(blocks.map((block: BlockPlace) => block.position))
-
-  constructor() {
+  public onAddButtonClick = (event: MouseEvent) => {
+   this._configService.addBlock(event, this.sectionSequence, this.rowSequence);
   }
 
-  ngOnInit() {
-    if (_.isEmpty(this.row)) {
-      this.row = _.range(this.maxColumnCount + 2);
-    }
+  public ngOnInit() {
   }
 
 }

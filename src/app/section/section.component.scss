@@ -2,7 +2,30 @@
 
 .section-wrapper {
   box-shadow: inset $box-shadow;
-  border-radius: $border-radius;
+  border-radius: 0 0 $border-radius $border-radius;
   padding: 20px;
   margin-bottom: 20px;
+}
+
+.section-name {
+  font-size: 20px;
+  background: lavender;
+  padding: 7px 14px;
+  border-radius: $border-radius $border-radius 0 0;
+  color: rgba(0,0,0,0.7);
+}
+
+p {
+  margin: 0;
+}
+
+input {
+  width: 30%;
+  padding: 3px;
+  border-radius: $border-radius;
+  border: 1px solid rgba(0,0,0,0.3);
+}
+
+input:focus {
+  outline-color: cornflowerblue;
 }

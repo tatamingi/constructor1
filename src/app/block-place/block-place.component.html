@@ -1,2 +1,5 @@
-<app-add-button *ngIf="showAddButton" (click)="onAddButtonClick($event, block)"></app-add-button>
-<app-block *ngIf="!showAddButton" [blockName]="block.name"></app-block>
+<app-block *ngIf="block"
+           [blockName]="block.name"
+           [blockWidth]="block.width"
+           [draggable]="true"
+           (updateBlock)="updateBlock($event)"></app-block>

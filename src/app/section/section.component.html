@@ -1,3 +1,7 @@
+<div class="section-name">
+  <p (click)="toggleInput()" *ngIf="!inputEnable">{{section.name}}</p>
+  <input type="text" *ngIf="inputEnable" [(ngModel)]="section.name" (blur)="hideInput()" autofocus>
+</div>
 <div class="section-wrapper">
   <app-section-row *ngFor="let row of rows; let rowSequence = index" [blocks]="row"
                    [maxColumnCount]="maxColumnCount"

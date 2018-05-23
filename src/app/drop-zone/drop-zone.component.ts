@@ -24,19 +24,22 @@ export class DropZoneComponent implements OnInit {
     private _transitionService: TransitionService) {
   }
 
-  public addSplitViewClick = (side: string): void => {
+  public addSplitViewClick = (event: MouseEvent, side: string): void => {
+    event.preventDefault();
+    event.stopPropagation();
     this.showAddSplitViewButton = false;
     this.addSplitView.emit(side);
     this.sectionsWidth = 100;
+    this._configService.addBlock(event, null, null, side);
   }
 
-  public addSectionClick = (event: MouseEvent): void => {
-    this._transitionService.setOverlayPosition([event.clientY, event.clientX]);
+  public addSectionClick = (): void => {
+    this._configService.addSection();
   }
 
   public ngOnInit() {
     this._configService.getConfig().subscribe((config: Config) => {
-      if (!_.isNil(config) && !_.isNil(config.sections)) {
+      if (!_.isEmpty(config) && !_.isNil(config.sections)) {
         this.sections = config.sections;
       }
     });
