@@ -28,9 +28,6 @@ export class DragManagerService {
     let avatar;
     if (this._dragObject.elem.className.indexOf('draggable-from-menu') > -1) {
       avatar = this._dragObject.elem._.cloneNode(true);
-
-      // avatar.style.left = this._dragObject.downX + 'px';
-      // avatar.style.top = this._dragObject.downY + 'px';
     } else {
       avatar = this._dragObject.elem;
     }
