@@ -3,7 +3,7 @@
     <app-block-place *ngFor="let block of blocks" [block]="block"
                      [sectionSequence]="sectionSequence"
                      [sequence]="rowSequence"
-                     [style.width]="block.width + '%'"></app-block-place>
+                     [style.width]="block.width + '%'" class="droppable"></app-block-place>
     <app-block-place [style.width]="defaultBlockWidth + '%'" class="droppable"></app-block-place>
   </div>
  <app-add-button (click)="onAddButtonClick($event)"></app-add-button>

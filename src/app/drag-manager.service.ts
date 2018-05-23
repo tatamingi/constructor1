@@ -60,7 +60,10 @@ export class DragManagerService {
     this._dragObject.avatar.style.display = 'none';
     const elem = document.elementFromPoint(event.clientX, event.clientY);
     this._dragObject.avatar.style.display = '';
-    return elem.closest('.droppable');
+    const droppable = elem.closest('.droppable');
+    if (_.isEmpty(droppable.children)) {
+      return droppable;
+    }
   }
 
   private finishDrag = (event): void => {
@@ -84,7 +87,7 @@ export class DragManagerService {
     if (_.isNil(elem)) {
       return;
     }
-    this._dragObject.elem = elem;
+    this._dragObject.elem = elem.parentNode;
     this._dragObject.downX = event.pageX;
     this._dragObject.downY = event.pageY;
   }
