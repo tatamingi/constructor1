@@ -1,9 +1,11 @@
 <div class="row-wrapper">
   <div class="row-wrapper__blocks">
-    <app-block-place *ngFor="let block of blocks" [block]="block"
+    <app-block-place *ngFor="let block of blocks; let position = index" [block]="block"
                      [sectionSequence]="sectionSequence"
                      [sequence]="rowSequence"
-                     [style.width]="block.width + '%'" class="droppable"></app-block-place>
+                     [style.width]="block.width + '%'"
+                     onmouseup="onMouseUp(position)"
+                     class="droppable"></app-block-place>
     <app-block-place [style.width]="defaultBlockWidth + '%'" class="droppable"></app-block-place>
   </div>
  <app-add-button (click)="onAddButtonClick($event)"></app-add-button>

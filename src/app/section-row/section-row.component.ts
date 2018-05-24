@@ -26,6 +26,16 @@ export class SectionRowComponent implements OnInit {
    this._configService.addBlock(event, this.sectionSequence, this.rowSequence);
   }
 
+  public onMouseUp = (position: number): void => {
+    debugger
+    const location = {
+      sectionSequence: this.sectionSequence,
+      sequence: this.rowSequence,
+      position: position
+    }
+    this._transitionService.setBlockLocation(location);
+  }
+
   public ngOnInit() {
   }
 

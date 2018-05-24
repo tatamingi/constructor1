@@ -34,7 +34,6 @@ export class BlockComponent implements OnInit {
   }
 
   public toggleDragnDrop = (block: BlockPlace) => {
-    debugger
     this._dragManagerService.dragManager(block, this.blockElement.nativeElement);
   }
 
