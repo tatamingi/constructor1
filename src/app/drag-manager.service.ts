@@ -58,7 +58,7 @@ export class DragManagerService {
     const elem = document.elementFromPoint(event.clientX, event.clientY);
     this._dragObject.avatar.style.display = '';
     const droppable = elem.closest('.droppable');
-    if (_.isEmpty(droppable.children)) {
+    if (_.isEmpty(droppable.children)) { // ToDo: make it via ngClass in section row
       return droppable;
     }
   }
