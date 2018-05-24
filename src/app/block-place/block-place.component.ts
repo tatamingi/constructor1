@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, HostBinding} from '@angular/core';
 import * as _ from 'lodash';
 import { TransitionService } from '../transition.service';
 import { ConfigService } from '../config.service';
@@ -7,7 +7,7 @@ import { BlockPlace, Config } from '../classes';
 @Component({
   selector: 'app-block-place',
   templateUrl: './block-place.component.html',
-  styleUrls: ['./block-place.component.scss']
+  styleUrls: ['./block-place.component.scss'],
 })
 export class BlockPlaceComponent implements OnInit {
 
@@ -15,6 +15,7 @@ export class BlockPlaceComponent implements OnInit {
   @Input() public sequence: number;
 
   @Input() public block: BlockPlace;
+  @HostBinding('class.highlighted') public s = true;
 
   constructor(
     private _transitionService: TransitionService,

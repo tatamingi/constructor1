@@ -1,3 +1,5 @@
+@import '../ui-variables';
+
 .row-wrapper {
   display: flex;
   justify-content: space-between;
@@ -13,6 +15,10 @@
 :host /deep/ button {
   width: 100px;
   height: 100px;
+}
+
+.highlighted {
+  border: 1px solid rgba(0,0,0,0.2)
 }
 
 
