@@ -1,4 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
+import {DragManagerService} from '../drag-manager.service';
+import { BlockPlace } from '../classes';
 
 @Component({
   selector: 'app-block',
@@ -11,14 +13,16 @@ export class BlockComponent implements OnInit {
   @Input() public blockWidth: number;
   @Input() public draggableFromMenu: boolean;
   @Input() public draggable: boolean;
+  @Input() public block: BlockPlace;
 
   @Output() public updateBlock = new EventEmitter();
 
   @ViewChild('input') private input: ElementRef;
+  @ViewChild('blockElement') private blockElement: ElementRef;
 
   public inputEnable: boolean;
 
-  constructor() { }
+  constructor(private _dragManagerService: DragManagerService) { }
 
   public updateWidth = (width: number) => {
     this.inputEnable = false;
@@ -27,6 +31,11 @@ export class BlockComponent implements OnInit {
 
   public toggleInput = (): void => {
     this.inputEnable = true;
+  }
+
+  public toggleDragnDrop = (block: BlockPlace) => {
+    debugger
+    this._dragManagerService.dragManager(block, this.blockElement.nativeElement);
   }
 
   ngOnInit() {

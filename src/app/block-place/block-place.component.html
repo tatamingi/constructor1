@@ -1,5 +1,6 @@
 <app-block *ngIf="block"
            [blockName]="block.name"
            [blockWidth]="block.width"
+           [block]="block"
            [draggable]="true"
            (updateBlock)="updateBlock($event)"></app-block>
