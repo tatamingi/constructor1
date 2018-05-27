@@ -27,7 +27,6 @@ export class BlockPlaceComponent implements AfterViewInit, OnDestroy {
 
   public updateBlock = (width: number): void => {
     this.block.width = +width;
-    // ToDo: возможно нужно вызвать метод обновления секции, но объект конфига обновился почему то сам без next()
   }
 
   public ngAfterViewInit() {
@@ -41,7 +40,6 @@ export class BlockPlaceComponent implements AfterViewInit, OnDestroy {
           event.clientY < this.blockPlaceBox.y + this.blockPlaceBox.height) {
         block.sequence = this.sequence;
         block.position = this.position;
-        // this._configService.updateConfig();
       }
     });
   }

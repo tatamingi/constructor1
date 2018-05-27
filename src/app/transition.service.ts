@@ -7,7 +7,6 @@ import {Subject} from 'rxjs/Subject';
 export class TransitionService {
   private _overlayPosition = new BehaviorSubject<number[]>([]);
   private _blockName = new Subject<string>();
-  private _blockLocation = new Subject<any>();
   private _event = new Subject<string>();
 
   public setOverlayPosition = (position: number[]): void => {
@@ -21,12 +20,6 @@ export class TransitionService {
   }
 
   public getBlockName = (): Subject<string> => this._blockName;
-
-  public setBlockLocation = (location): void => {
-    this._blockLocation.next(location);
-  }
-
-  public getBlockLocation = (): Subject<any> => this._blockLocation;
 
   public setEvent = (event): void => {
     this._event.next(event);
