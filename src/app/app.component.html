@@ -5,6 +5,7 @@
                    [ngClass]="{'wrapper__drop-zone__first-block': !dropZoneReversed && splitViewEnable}"
                    [style.width]="dropZoneWidth + '%'"></app-drop-zone>
     <app-split-view-zone [style.display]="displaySplitView"
+                         class="droppable"
                          [style.width]="splitViewWidth + '%'"
                          [ngClass]="{'wrapper__drop-zone__first-block': dropZoneReversed && splitViewEnable}">
     </app-split-view-zone>

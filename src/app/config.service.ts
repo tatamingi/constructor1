@@ -64,6 +64,11 @@ export class ConfigService {
     this.configSubj.next(this.config);
   }
 
+  public updateConfig = () => {
+    debugger
+    this.configSubj.next(this.config);
+  }
+
   public addBlock = (event: MouseEvent, sectionSequence?: number, rowSequence?: number, side?: string) => {
     this._transitionService.setOverlayPosition([event.clientY, event.clientX]);
 debugger

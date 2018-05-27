@@ -11,7 +11,6 @@ import {TransitionService} from '../transition.service';
 })
 export class DropZoneComponent implements OnInit {
   @Output() public addSplitView = new EventEmitter<string>();
-  // @Output() public onAddSectonClick = new EventEmitter(<>)
   @Input() public showAddSplitViewButton = true;
 
   public addSplitViewButtonWidth = 5;

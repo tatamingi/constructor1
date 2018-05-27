@@ -1,6 +1,9 @@
-<app-block *ngIf="block" #blockPlace
-           [blockName]="block.name"
-           [blockWidth]="block.width"
-           [block]="block"
-           [draggable]="true"
-           (updateBlock)="updateBlock($event)"></app-block>
+<div #blockPlaceWrapper>
+  <app-block *ngIf="block"
+             [blockName]="block.name"
+             [blockWidth]="block.width"
+             [block]="block"
+             [draggable]="true"
+             (updateBlock)="updateBlock($event)"></app-block>
+</div>
+

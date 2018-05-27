@@ -3,10 +3,15 @@
     <app-block-place *ngFor="let block of blocks; let position = index" [block]="block"
                      [sectionSequence]="sectionSequence"
                      [sequence]="rowSequence"
+                     [position]="position"
                      [style.width]="block.width + '%'"
                      onmouseup="onMouseUp(position)"
                      class="droppable"></app-block-place>
-    <app-block-place [style.width]="defaultBlockWidth + '%'" class="droppable"></app-block-place>
+    <app-block-place [style.width]="defaultBlockWidth + '%'"
+                     [sectionSequence]="sectionSequence"
+                     [sequence]="rowSequence"
+                     [position]="blocks.length"
+                     class="droppable"></app-block-place>
   </div>
  <app-add-button (click)="onAddButtonClick($event)"></app-add-button>
 </div>

@@ -29,6 +29,7 @@ export class DragManagerService {
 
   private createAvatar = () => {
     let avatar;
+
     if (this._dragObject.elem.className.indexOf('draggable-from-menu') > -1) {
       avatar = this._dragObject.elem._.cloneNode(true);
     } else {
@@ -58,13 +59,14 @@ export class DragManagerService {
   }
 
   private findDroppable = (event) => {
+    debugger
     this._dragObject.avatar.style.display = 'none';
     const elem = document.elementFromPoint(event.clientX, event.clientY);
     this._dragObject.avatar.style.display = '';
     const droppable = elem.closest('.droppable');
 
 
-    if (!_.isNil(droppable) && _.isEmpty(droppable.children)) {
+    if (!_.isNil(droppable) && _.isEmpty(droppable.children[0].children)) {
       return droppable;
     }
   }
@@ -73,7 +75,7 @@ export class DragManagerService {
     const dropElem = this.findDroppable(event) as HTMLElement;
 
     if (!_.isNil(dropElem)) {
-      dropElem.appendChild(this._dragObject.avatar);
+      dropElem.children[0].appendChild(this._dragObject.avatar);
       dropElem.style.width = this._dragObject.blockPlaceWidth;
     } else {
       this._dragObject.avatar.rollBack();
@@ -85,13 +87,17 @@ export class DragManagerService {
       return;
     }
 
-    const blockPlace = elem.parentNode.parentNode as HTMLElement;
+    const blockPlace = elem.parentElement.parentElement.parentElement;
 
     this._dragObject.elem = elem.parentNode;
     this._dragObject.downX = event.pageX;
     this._dragObject.downY = event.pageY;
     this._dragObject.blockWidth = elem.clientWidth + 'px';
-    this._dragObject.blockPlaceWidth = blockPlace.style.width;
+    if (!_.isEmpty(blockPlace.style.width)) {
+      this._dragObject.blockPlaceWidth = blockPlace.style.width;
+    } else {
+      this._dragObject.blockPlaceWidth = '40%';
+    }
   }
 
   public onMouseMove = (event): void => {
@@ -119,20 +125,19 @@ export class DragManagerService {
     this._dragObject.avatar.style.top = event.pageY - this._dragObject.shiftY + 'px';
   }
 
-  private onMouseUp = (event, blockElement): void => {
+  private onMouseUp = (event, blockObj): void => {
+    debugger
     if (!_.isNil(this._dragObject.avatar)) {
       this.finishDrag(event);
     }
-debugger
-    this._transitionService.getBlockLocation().subscribe((location) => {
-      debugger
-    })
-    debugger
+
     document.onmousemove = null;
     document.onmouseup = null;
     this._dragObject.elem.style = '';
     document.body.className = '';
     this._dragObject = {};
+
+    this._transitionService.setEvent([event, blockObj]);
   }
 
   public dragManager = (blockObj: BlockPlace, blockElement: HTMLElement): void => {
@@ -141,7 +146,7 @@ debugger
       this.onMouseMove(event);
     };
     document.onmouseup = (event: MouseEvent) => {
-      this.onMouseUp(event, blockElement);
+      this.onMouseUp(event, blockObj);
     };
   }
 }

@@ -32,6 +32,7 @@ export class SectionComponent implements OnInit {
 
   public ngOnInit() {
     this._configService.getConfig().subscribe((config: Config) => {
+      debugger
       if (!_.isNil(config) && !_.isNil(config.sections)) {
         this.section = _.find(config.sections, (sec: Section) => sec.sequence === this.sequence);
         this.rows =  _.range(this.getRowsCount(this.section))

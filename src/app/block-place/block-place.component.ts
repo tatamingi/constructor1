@@ -10,13 +10,15 @@ import { BlockPlace, Config } from '../classes';
   styleUrls: ['./block-place.component.scss'],
 })
 export class BlockPlaceComponent implements AfterViewInit, OnDestroy {
-
   @Input() public sectionSequence: number;
   @Input() public sequence: number;
+  @Input() public position: number;
 
   @Input() public block: BlockPlace;
   @HostBinding('class.highlighted') public highlighted = true;
-  @ViewChild('blockPlace') private _blockPlace;
+  @ViewChild('blockPlaceWrapper') private _blockPlaceWrapper;
+
+  private blockPlaceBox
 
   constructor(
     private _transitionService: TransitionService,
@@ -29,17 +31,25 @@ export class BlockPlaceComponent implements AfterViewInit, OnDestroy {
   }
 
   public ngAfterViewInit() {
-    // this._blockPlace.nativeElement.onmouseover = () => {
-    //   this.highlighted = true;
-    // };
-    // this._blockPlace.nativeElement.onmouseleave = () => {
-    //   this.highlighted = false;
-    // };
+    debugger
+    // this.blockPlaceBox = this._blockPlaceWrapper.nativeElement.getBoundingClientRect();
+
+    this._transitionService.getEvent().subscribe((res) => {
+      const event = res[0];
+      const block = res[1];
+      this.blockPlaceBox = this._blockPlaceWrapper.nativeElement.getBoundingClientRect();
+      if (event.clientX > this.blockPlaceBox.x &&
+          event.clientX < this.blockPlaceBox.x + this.blockPlaceBox.width &&
+          event.clientY > this.blockPlaceBox.y &&
+          event.clientY < this.blockPlaceBox.y + this.blockPlaceBox.height) {
+        block.sequence = this.sequence;
+        block.position = this.position;
+        // this._configService.updateConfig();
+      }
+    });
   }
 
   public ngOnDestroy() {
-    // this._blockPlace.nativeElement.onmouseover = null;
-    // this._blockPlace.nativeElement.onmouseleave = null;
   }
 
 }

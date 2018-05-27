@@ -8,6 +8,7 @@ export class TransitionService {
   private _overlayPosition = new BehaviorSubject<number[]>([]);
   private _blockName = new Subject<string>();
   private _blockLocation = new Subject<any>();
+  private _event = new Subject<string>();
 
   public setOverlayPosition = (position: number[]): void => {
     this._overlayPosition.next(position);
@@ -26,6 +27,12 @@ export class TransitionService {
   }
 
   public getBlockLocation = (): Subject<any> => this._blockLocation;
+
+  public setEvent = (event): void => {
+    this._event.next(event);
+  }
+
+  public getEvent = (): Subject<any> => this._event;
 
 }
 
