@@ -31,9 +31,6 @@ export class BlockPlaceComponent implements AfterViewInit, OnDestroy {
   }
 
   public ngAfterViewInit() {
-    debugger
-    // this.blockPlaceBox = this._blockPlaceWrapper.nativeElement.getBoundingClientRect();
-
     this._transitionService.getEvent().subscribe((res) => {
       const event = res[0];
       const block = res[1];

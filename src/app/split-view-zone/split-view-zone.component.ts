@@ -11,6 +11,7 @@ import {ConfigService} from '../config.service';
 export class SplitViewZoneComponent implements OnInit {
   public blockName: string;
   public showBlock: boolean;
+  public blockWidth: number;
   public addBlockLabel = 'добавить блок';
 
   constructor(private _configService: ConfigService) { }
@@ -20,6 +21,7 @@ export class SplitViewZoneComponent implements OnInit {
       if (!_.isNil(config) && !_.isNil(config.splitView)) {
         this.showBlock = true;
         this.blockName = config.splitView.name;
+        this.blockWidth = config.splitView.width;
       }
     });
   }

@@ -6,6 +6,8 @@ import {TransitionService} from './transition.service';
 @Injectable()
 export class DragManagerService {
   private _dragObject;
+  private _defaultBlockWidth = 130;
+  private _defaultBlockHeight = 100;
 
   constructor(
     private _transitionService: TransitionService) {
@@ -36,7 +38,13 @@ export class DragManagerService {
       avatar = this._dragObject.elem;
     }
 
-    avatar.style.width = this._dragObject.blockWidth; // ширина блока в px во время переноса
+    if (this._dragObject.fromSplitView) {
+      avatar.style.width = this._defaultBlockWidth + 'px';
+      avatar.style.height = this._defaultBlockHeight + 'px';
+    } else {
+      avatar.style.width = this._dragObject.blockWidth; // ширина блока в px во время перенос
+      avatar.style.height = this._defaultBlockHeight + 'px';
+    }
 
     const old = {
       parent: avatar.parentNode,
@@ -59,7 +67,7 @@ export class DragManagerService {
   }
 
   private findDroppable = (event) => {
-    debugger
+
     this._dragObject.avatar.style.display = 'none';
     const elem = document.elementFromPoint(event.clientX, event.clientY);
     this._dragObject.avatar.style.display = '';
@@ -98,9 +106,15 @@ export class DragManagerService {
     } else {
       this._dragObject.blockPlaceWidth = '40%';
     }
+    if (!_.isNil(event.target.closest('.split-view-zone'))) {
+      this._dragObject.fromSplitView = true;
+    }
   }
 
   public onMouseMove = (event): void => {
+    if (_.isNil(this._dragObject)) {
+      return;
+    }
 
     if (_.isNil(this._dragObject.avatar)) {
       const moveX = event.pageX - this._dragObject.downX;
@@ -114,23 +128,30 @@ export class DragManagerService {
       this.createAvatar();
 
       const coords = this.getCoords(this._dragObject.avatar);
-      this._dragObject.shiftX = this._dragObject.downX - coords.left;
-      this._dragObject.shiftY = this._dragObject.downY - coords.top;
+
+      if (this._dragObject.fromSplitView) {
+        this._dragObject.shiftX = this._defaultBlockWidth / 2;
+        this._dragObject.shiftY = this._defaultBlockHeight / 2;
+      } else {
+        this._dragObject.shiftX = this._dragObject.downX - coords.left;
+        this._dragObject.shiftY = this._dragObject.downY - coords.top;
+      }
 
       this.startDrag();
-
     }
-
-    this._dragObject.avatar.style.left = event.pageX - this._dragObject.shiftX + 'px';
-    this._dragObject.avatar.style.top = event.pageY - this._dragObject.shiftY + 'px';
+      this._dragObject.avatar.style.left = event.pageX - this._dragObject.shiftX + 'px';
+      this._dragObject.avatar.style.top = event.pageY - this._dragObject.shiftY + 'px';
   }
 
   private onMouseUp = (event, blockObj): void => {
-    debugger
+
+    if (_.isEmpty(this._dragObject)) {
+      return;
+    }
+
     if (!_.isNil(this._dragObject.avatar)) {
       this.finishDrag(event);
     }
-
     document.onmousemove = null;
     document.onmouseup = null;
     this._dragObject.elem.style = '';

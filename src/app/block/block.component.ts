@@ -9,7 +9,7 @@ import { BlockPlace } from '../classes';
 })
 export class BlockComponent implements OnInit {
   @Input() public blockName: string;
-  @Input() public blockHeight = '100px';
+  @Input() public blockHeight: number;
   @Input() public blockWidth: number;
   @Input() public draggableFromMenu: boolean;
   @Input() public draggable: boolean;

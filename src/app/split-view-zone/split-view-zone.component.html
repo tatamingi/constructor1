@@ -1,4 +1,7 @@
 <div class="split-view-zone">
   <app-add-button *ngIf="!showBlock" [label]="addBlockLabel"></app-add-button>
-  <app-block *ngIf="showBlock" [blockName]="blockName" [blockHeight]="'100%'"></app-block>
+  <app-block *ngIf="showBlock"
+             [blockName]="blockName"
+             [blockHeight]="'100%'"
+             [blockWidth]="blockWidth"></app-block>
 </div>
